@@ -481,6 +481,10 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -504,6 +508,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -533,6 +541,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -562,6 +574,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
