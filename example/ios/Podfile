@@ -42,10 +42,10 @@ target 'Example' do
     # Fix for React Native 0.82 Folly coroutine issue
     # https://github.com/facebook/react-native/issues/37748
     installer.pods_project.targets.each do |target|
-      if target.name == 'RCT-Folly'
-        target.build_configurations.each do |config|
-          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
-          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'FOLLY_CFG_NO_COROUTINES=1'
+      target.build_configurations.each do |config|
+        config.build_settings['OTHER_CPLUSPLUSFLAGS'] ||= '$(inherited)'
+        unless config.build_settings['OTHER_CPLUSPLUSFLAGS'].include?('FOLLY_CFG_NO_COROUTINES')
+          config.build_settings['OTHER_CPLUSPLUSFLAGS'] += ' -DFOLLY_CFG_NO_COROUTINES=1'
         end
       end
     end
