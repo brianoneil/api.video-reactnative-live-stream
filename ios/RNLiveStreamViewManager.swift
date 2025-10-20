@@ -14,24 +14,27 @@ class RNLiveStreamViewManager: RCTViewManager {
 
     @objc(startStreaming:withRequestId:withStreamKey:withUrl:)
     func startStreaming(_ reactTag: NSNumber, withRequestId requestId: NSNumber, streamKey: String, url: String?) {
-        bridge!.uiManager.addUIBlock { (_: RCTUIManager?, viewRegistry: [NSNumber: UIView]?) in
-            let view: RNLiveStreamViewImpl = (viewRegistry![reactTag] as? RNLiveStreamViewImpl)!
+        guard let bridge = bridge else { return }
+        bridge.uiManager.addUIBlock { (_: RCTUIManager?, viewRegistry: [NSNumber: UIView]?) in
+            guard let view = viewRegistry?[reactTag] as? RNLiveStreamViewImpl else { return }
             view.startStreaming(requestId: Int(truncating: requestId), streamKey: streamKey, url: url)
         }
     }
 
     @objc(stopStreaming:)
     func stopStreaming(_ reactTag: NSNumber) {
-        bridge!.uiManager.addUIBlock { (_: RCTUIManager?, viewRegistry: [NSNumber: UIView]?) in
-            let view: RNLiveStreamViewImpl = (viewRegistry![reactTag] as? RNLiveStreamViewImpl)!
+        guard let bridge = bridge else { return }
+        bridge.uiManager.addUIBlock { (_: RCTUIManager?, viewRegistry: [NSNumber: UIView]?) in
+            guard let view = viewRegistry?[reactTag] as? RNLiveStreamViewImpl else { return }
             view.stopStreaming()
         }
     }
 
     @objc(setZoomRatioCommand:withZoomRatio:)
     func setZoomRatioCommand(_ reactTag: NSNumber, zoomRatio: NSNumber) {
-        bridge!.uiManager.addUIBlock { (_: RCTUIManager?, viewRegistry: [NSNumber: UIView]?) in
-            let view: RNLiveStreamViewImpl = (viewRegistry![reactTag] as? RNLiveStreamViewImpl)!
+        guard let bridge = bridge else { return }
+        bridge.uiManager.addUIBlock { (_: RCTUIManager?, viewRegistry: [NSNumber: UIView]?) in
+            guard let view = viewRegistry?[reactTag] as? RNLiveStreamViewImpl else { return }
             view.zoomRatio = zoomRatio.floatValue
         }
     }
